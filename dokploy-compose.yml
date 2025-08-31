@@ -1,0 +1,130 @@
+version: '3.8'
+
+name: codex-dokploy
+
+networks:
+  codex-network:
+    driver: bridge
+
+services:
+  codex:
+    image: dimatic/codex:latest
+    container_name: codex-app
+    
+    # Resource limits for production
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    
+    # Capabilities needed for document processing
+    cap_add:
+      - SYS_ADMIN
+    
+    # Port mapping - External 3030 to Internal 3030
+    ports:
+      - "3030:3030"
+    
+    # Persistent volumes for data retention
+    volumes:
+      # Environment configuration
+      - ./data/.env:/app/server/.env
+      
+      # Database and storage
+      - ./data/storage:/app/server/storage
+      
+      # Document processing directories
+      - ./data/hotdir:/app/collector/hotdir
+      - ./data/outputs:/app/collector/outputs
+      
+      # Vector database storage (LanceDB)
+      - ./data/lancedb:/app/server/storage/lancedb
+    
+    # Environment variables
+    environment:
+      # Core configuration
+      - NODE_ENV=production
+      - SERVER_PORT=3030
+      - STORAGE_DIR=/app/server/storage
+      
+      # User/Group IDs for file permissions
+      - UID=1000
+      - GID=1000
+      
+      # Security (These should be overridden in .env.dokploy)
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRY=30d
+      - SIG_KEY=${SIG_KEY}
+      - SIG_SALT=${SIG_SALT}
+      
+      # Default LLM Provider (can be changed via UI or env)
+      - LLM_PROVIDER=${LLM_PROVIDER:-ollama}
+      - OLLAMA_BASE_PATH=${OLLAMA_BASE_PATH:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL_PREF=${OLLAMA_MODEL_PREF:-llama3.2}
+      
+      # Default Embedding Engine
+      - EMBEDDING_ENGINE=${EMBEDDING_ENGINE:-native}
+      - EMBEDDING_MODEL_PREF=${EMBEDDING_MODEL_PREF:-Xenova/all-MiniLM-L6-v2}
+      
+      # Default Vector Database (LanceDB - local, no external deps)
+      - VECTOR_DB=${VECTOR_DB:-lancedb}
+      
+      # Audio/Whisper Provider
+      - WHISPER_PROVIDER=${WHISPER_PROVIDER:-local}
+      
+      # TTS Provider
+      - TTS_PROVIDER=${TTS_PROVIDER:-native}
+      
+      # Optional: Authentication token for remote access
+      - AUTH_TOKEN=${AUTH_TOKEN:-}
+      
+      # Disable telemetry for privacy
+      - DISABLE_TELEMETRY=${DISABLE_TELEMETRY:-true}
+    
+    # Health check configuration
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3030/api/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+    # Restart policy for production
+    restart: unless-stopped
+    
+    # Network configuration
+    networks:
+      - codex-network
+    
+    # Extra hosts for local service access
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    
+    # Labels for Dokploy integration
+    labels:
+      - "dokploy.enabled=true"
+      - "dokploy.name=codex"
+      - "dokploy.port=3030"
+      - "dokploy.description=Full-stack RAG application for chatting with documents"
+
+# Optional: Ollama service for local LLM
+# Uncomment if you want to run Ollama alongside Codex
+# ollama:
+#   image: ollama/ollama:latest
+#   container_name: codex-ollama
+#   volumes:
+#     - ./data/ollama:/root/.ollama
+#   ports:
+#     - "11434:11434"
+#   restart: unless-stopped
+#   networks:
+#     - codex-network
+#   deploy:
+#     resources:
+#       limits:
+#         cpus: '4'
+#         memory: 8G

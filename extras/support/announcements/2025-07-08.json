@@ -1,0 +1,25 @@
+[
+  {
+    "thumbnail_url": "https://cdn.codex.com/support/announcements/assets/private-browsing.png",
+    "title": "Private Web Scraping",
+    "short_description": "Scrape private, gated, or authenticated websites using the browser tool.",
+    "goto": "https://docs.codex.com/features/browser-tool",
+    "author": "Codex",
+    "date": "July 8, 2025"
+  },
+  {
+    "thumbnail_url": "https://cdn.codex.com/support/announcements/assets/mobile.png",
+    "title": "Codex Mobile Beta",
+    "short_description": "Codex on-device, offline, and private. Syncs with Codex.",
+    "goto": "https://docs.google.com/forms/d/e/1FAIpQLSdrMRCUXVDWKrtNTcHzVcHQk_SRoiT8X8tiawTFtAhjMq_L6Q/viewform",
+    "author": "Codex",
+    "date": "July 3, 2025"
+  },
+  {
+    "title": "Community Hub updates",
+    "short_description": "You can now easily push and pull Agent Flows, System Prompts, and more to the Codex Community Hub.",
+    "goto": "https://hub.codex.com",
+    "author": "Codex",
+    "date": "June 25, 2025"
+  }
+]
