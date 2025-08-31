@@ -227,7 +227,7 @@ class SystemConfig {
     const {
       multiUserMode = true,
       appName = 'Codex',
-      logoFilename = 'codex-logo.png',
+      logoFilename = 'anything-llm-logo.png',
       vectorDb = 'lancedb',
       chunkSize = 1000,
       chunkOverlap = 20,
@@ -316,7 +316,7 @@ class SystemConfig {
       const defaultConfig = {
         multiUserMode: false,
         appName: 'Codex',
-        logoFilename: 'codex-logo.png',
+        logoFilename: 'anything-llm-logo.png',
         vectorDb: 'lancedb',
         chunkSize: 1000,
         chunkOverlap: 20,

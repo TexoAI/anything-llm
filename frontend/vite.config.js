@@ -76,7 +76,7 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ["@dimatic/piper-tts-web"],
+    include: ["@mintplex-labs/piper-tts-web"],
     esbuildOptions: {
       define: {
         global: "globalThis"

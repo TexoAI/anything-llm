@@ -122,7 +122,7 @@ DEFAULT_VECTOR_DB=lancedb
 # System Settings
 DEFAULT_MULTI_USER_MODE=true
 DEFAULT_APP_NAME=Codex
-DEFAULT_LOGO_FILENAME=codex-logo.png
+DEFAULT_LOGO_FILENAME=anything-llm-logo.png
 ```
 
 ### 2.3 Database Initialization Script

@@ -8,7 +8,7 @@ async function main() {
   
   // Base system settings that are always needed
   const baseSettings = [
-    { label: "logo_filename", value: process.env.DEFAULT_LOGO_FILENAME || "codex-logo.png" },
+    { label: "logo_filename", value: process.env.DEFAULT_LOGO_FILENAME || "anything-llm-logo.png" },
   ];
   
   // Additional settings for auto-deployment

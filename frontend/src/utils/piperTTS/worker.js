@@ -1,4 +1,4 @@
-import * as TTS from "@dimatic/piper-tts-web";
+import * as TTS from "@mintplex-labs/piper-tts-web";
 
 /** @type {import("@dimatic/piper-web-tts").TtsSession | null} */
 let PIPER_SESSION = null;
@@ -24,7 +24,7 @@ let PIPER_SESSION = null;
 /**
  * @typedef VoicesRequestResponse
  * @property {('voices')} type
- * @property {[import("@dimatic/piper-tts-web/dist/types")['Voice']]} voices - available voices in array
+ * @property {[import("@mintplex-labs/piper-tts-web/dist/types")['Voice']]} voices - available voices in array
  */
 
 /**

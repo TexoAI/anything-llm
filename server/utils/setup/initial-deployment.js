@@ -208,7 +208,7 @@ class InitialDeployment {
       const result = await systemConfig.configureDefaults({
         multiUserMode: process.env.DEFAULT_MULTI_USER_MODE === 'true',
         appName: process.env.DEFAULT_APP_NAME || 'Codex',
-        logoFilename: process.env.DEFAULT_LOGO_FILENAME || 'codex-logo.png',
+        logoFilename: process.env.DEFAULT_LOGO_FILENAME || 'anything-llm-logo.png',
         vectorDb: process.env.DEFAULT_VECTOR_DB || 'lancedb'
       });
       

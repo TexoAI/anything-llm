@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import CodexIcon from "@/media/logo/codex-icon.png";
+import CodexIcon from "@/media/logo/anything-llm-icon.png";
 import AgentLLMItem from "./AgentLLMItem";
 import { AVAILABLE_LLM_PROVIDERS } from "@/pages/GeneralSettings/LLMPreference";
 import { CaretUpDown, Gauge, MagnifyingGlass, X } from "@phosphor-icons/react";

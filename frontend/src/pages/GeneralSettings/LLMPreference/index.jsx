@@ -4,7 +4,7 @@ import Sidebar from "@/components/SettingsSidebar";
 import { isMobile } from "react-device-detect";
 import System from "@/models/system";
 import showToast from "@/utils/toast";
-import CodexIcon from "@/media/logo/codex-icon.png";
+import CodexIcon from "@/media/logo/anything-llm-icon.png";
 import OpenAiLogo from "@/media/llmprovider/openai.png";
 import GenericOpenAiLogo from "@/media/llmprovider/generic-openai.png";
 import AzureOpenAiLogo from "@/media/llmprovider/azure.png";
